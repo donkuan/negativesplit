@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+		<title>Negative Split</title>
+		<meta name="description" content="Running shoes and kit on sale at Dutch and European shops, filtered to your sizes.">
+		<meta name="3d5ec34cb6385f0" content="4ca7a0a478f18d38eb364070a4dcdff5" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,700..900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+		<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+		<style>
+/* Layout: race-bib masthead, a sizes panel that tells the page what fits, then a wrapping grid of deal cards. */
+:root{
+  --bg:#EEF1F4; --surface:#FFFFFF; --ink:#14202E; --muted:#5A6878; --line:#D3DAE2;
+  --track:#C2462B; --track-ink:#FFFFFF; --ok:#1F7A4D; --ok-bg:#E2F2E9; --warn:#8A5200; --warn-bg:#FBEFD9;
+  --chip:#E4E9EF; --stage:#E6EBF0; --ground:rgba(20,32,46,.10);
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0F1620; --surface:#18222E; --ink:#E8EDF2; --muted:#93A1B1; --line:#2A3746;
+  --track:#E8684A; --track-ink:#140B08; --ok:#5FCF98; --ok-bg:#16352A; --warn:#E8B260; --warn-bg:#3A2A12; --chip:#223040; --stage:#212D3B; --ground:rgba(0,0,0,.35); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1620; --surface:#18222E; --ink:#E8EDF2; --muted:#93A1B1; --line:#2A3746;
+  --track:#E8684A; --track-ink:#140B08; --ok:#5FCF98; --ok-bg:#16352A; --warn:#E8B260; --warn-bg:#3A2A12; --chip:#223040; --stage:#212D3B; --ground:rgba(0,0,0,.35); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px;display:grid;gap:20px}
+a{color:inherit}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--track);outline-offset:2px}
+
+/* masthead */
+.mast{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px}
+.bib{display:inline-grid;background:var(--track);color:var(--track-ink);padding:10px 16px 8px;border-radius:6px;position:relative}
+.bib::before,.bib::after{content:"";position:absolute;top:8px;width:7px;height:7px;border-radius:50%;background:var(--bg)}
+.bib::before{left:8px}.bib::after{right:8px}
+.bib b{font-family:var(--f-display);font-weight:900;font-style:italic;font-stretch:125%;font-size:clamp(26px,5vw,40px);letter-spacing:-.01em;line-height:1}
+.bib span{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.lede{max-width:46ch;color:var(--muted);margin:8px 0 0}
+.stamp{font-family:var(--f-mono);font-size:12px;color:var(--muted);text-align:right}
+.stamp strong{display:block;font-size:22px;color:var(--ink);font-weight:600}
+
+/* panels */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:14px}
+.panel-head{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between}
+h2{font-family:var(--f-display);font-stretch:110%;font-weight:800;font-size:18px;margin:0;text-wrap:balance}
+.summary{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.label{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.field{min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--chip);border-radius:999px;padding:5px 11px;font-size:13px;cursor:pointer;font-variant-numeric:tabular-nums;line-height:1.3}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.chip.static{cursor:default}
+.sizegrid .chip{min-width:52px;text-align:center;font-family:var(--f-mono);font-size:12.5px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.btn{border:0;background:var(--track);color:var(--track-ink);font-weight:600;padding:9px 16px;border-radius:8px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+input[type=text]{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 10px}
+select{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:7px 10px}
+
+/* toolbar */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.toolbar .grow{flex:1 1 auto}
+.elsewhere{flex:1 1 100%;font-size:13px;color:var(--muted)}
+.elsewhere a{color:var(--ink);font-weight:600;text-decoration-color:var(--track);text-underline-offset:3px}
+.searchrow{display:flex;flex-wrap:wrap;gap:10px;flex:1 1 100%;min-width:0}
+.searchrow .q{position:relative;flex:1 1 260px;min-width:0}
+#q{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:10px 12px 10px 36px;font-size:15px}
+#q:focus{border-color:var(--track);outline:none}
+.searchrow .q svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--muted);fill:none;stroke-width:2}
+#brandSel{flex:0 1 200px;min-width:0}
+.toggle{display:inline-flex;gap:8px;align-items:center;font-size:13.5px;cursor:pointer}
+.count{font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+
+/* deals */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;grid-template-rows:auto 1fr auto auto auto;gap:8px;min-width:0}
+.meta{display:flex;justify-content:space-between;gap:8px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.brand{font-size:12.5px;font-weight:600;color:var(--muted);margin:0}
+.model{font-family:var(--f-display);font-stretch:100%;font-weight:800;font-size:19px;line-height:1.15;margin:0;text-wrap:balance}
+.color{font-size:12.5px;color:var(--muted);margin:2px 0 0}
+.price{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+.now{font-family:var(--f-mono);font-weight:600;font-size:22px;font-variant-numeric:tabular-nums}
+.was{font-family:var(--f-mono);font-size:13px;color:var(--muted);text-decoration:line-through}
+.off{margin-left:auto;background:var(--track);color:var(--track-ink);font-family:var(--f-display);font-style:italic;font-weight:900;font-stretch:115%;font-size:15px;padding:2px 8px;border-radius:4px}
+.basis{font-size:11.5px;color:var(--muted);flex-basis:100%}
+.foot{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.pill{font-size:12px;font-weight:500;padding:3px 9px;border-radius:999px}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}
+.pill.warn{background:var(--warn-bg);color:var(--warn)}
+.pill.neutral{background:var(--chip);color:var(--muted)}
+.go{font-weight:600;font-size:13.5px;text-decoration:none;border-bottom:2px solid var(--track)}
+.go:hover{color:var(--track)}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:10px;padding:28px 16px;text-align:center;color:var(--muted)}
+
+.code{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:12px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.code b{font-family:var(--f-mono);font-weight:600;font-size:12.5px;color:var(--ink);background:var(--chip);border:1px dashed var(--muted);border-radius:5px;padding:2px 7px;letter-spacing:.04em}
+.code[hidden]{display:none}
+.copy{border:0;background:none;padding:0;color:var(--track);font-weight:600;font-size:12px;cursor:pointer;text-decoration:underline}
+.tablewrap{overflow-x:auto;margin:0 -4px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:13.5px}
+th{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}
+td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+td.cc b{font-family:var(--f-mono);font-weight:600}
+.src{color:var(--muted);font-size:12px}
+.notice{border:1px solid var(--line);border-left:4px solid var(--warn);background:var(--warn-bg);border-radius:8px;padding:12px 14px;display:grid;gap:6px;font-size:13.5px}
+.notice strong{color:var(--ink)}
+.notice p{margin:0;color:var(--ink)}
+.notice summary{cursor:pointer;color:var(--warn);font-weight:600;font-size:13px}
+.notice ul{margin:6px 0 0;padding-left:18px;display:grid;gap:3px;color:var(--ink)}
+.notice li span{color:var(--muted)}
+.about{color:var(--muted);font-size:13.5px;display:grid;gap:6px;max-width:72ch}
+.about h2{color:var(--ink);font-size:15px}
+.about p{margin:0}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}.card:hover{border-color:var(--track)}}
+</style>
+	</head>
+	<body>
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <div class="bib"><span>Running deals · NL &amp; EU</span><b>Negative Split</b></div>
+      <p class="lede">Running shoes and kit on sale at Dutch and European shops, filtered to what fits you. Prices drop, you don't pay full.</p>
+    </div>
+    <div class="stamp"><strong id="dealTotal">–</strong><span id="updated">Loading deals…</span></div>
+  </header>
+
+  <aside class="notice" id="notice" hidden aria-labelledby="noticeTitle">
+    <p><strong id="noticeTitle">Not every shop could be checked.</strong> <span id="noticeList"></span> Their deals are missing here; their sale pages are linked in the shops table at the bottom.</p>
+    <details><summary>Why each site is missing</summary><ul id="noticeWhy"></ul></details>
+  </aside>
+
+  <section class="panel" id="sizesPanel" aria-labelledby="sizesTitle">
+    <div class="panel-head">
+      <h2 id="sizesTitle">Your sizes</h2>
+      <div class="summary" id="sizeSummary"></div>
+      <button class="btn ghost" id="editSizes" type="button" hidden>Edit sizes</button>
+    </div>
+    <div id="sizeForm" class="row" style="gap:18px">
+      <div class="field">
+        <p class="label">Show gear for</p>
+        <div class="chips" id="genderChips"></div>
+      </div>
+      <div class="field">
+        <p class="label">What you're hunting</p>
+        <div class="chips" id="catChips"></div>
+      </div>
+      <div class="field" style="grid-column:1/-1">
+        <p class="label">Shoe size · EU (pick one or more)</p>
+        <div class="chips sizegrid" id="shoeChips"></div>
+      </div>
+      <div class="field">
+        <p class="label">Clothing size · tops, shorts, tights</p>
+        <div class="chips" id="clothChips"></div>
+      </div>
+      <div class="field">
+        <p class="label">Favourite brands (optional, go to the top)</p>
+        <input type="text" id="brandsInput" placeholder="e.g. ASICS, Saucony, adidas" autocomplete="off">
+      </div>
+      <div class="field" style="grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <button class="btn" id="saveSizes" type="button">Show my deals</button>
+        <span class="count">Saved in this browser only. Nothing is sent anywhere.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="toolbar" aria-label="Search, sort and filter">
+    <div class="searchrow">
+      <label class="q"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input type="search" id="q" aria-label="Search deals" placeholder="Search brand, model or shop, e.g. Vaporfly, Novablast, HOKA" autocomplete="off" enterkeyhint="search"></label>
+      <select id="brandSel" aria-label="Brand"><option value="">All brands</option></select>
+    </div>
+    <p class="elsewhere" id="elsewhere" hidden></p>
+    <label class="count" for="sortSel">Sort</label>
+    <select id="sortSel">
+      <option value="match">Best match</option>
+      <option value="off">Biggest discount</option>
+      <option value="price">Lowest price</option>
+    </select>
+    <label class="count" for="maxSel">Max</label>
+    <select id="maxSel">
+      <option value="0">Any price</option>
+      <option value="75">€75</option>
+      <option value="125">€125</option>
+      <option value="175">€175</option>
+      <option value="250">€250</option>
+    </select>
+    <div class="chips" id="countryChips" aria-label="Shop country"></div>
+    <label class="toggle"><input type="checkbox" id="confirmedOnly"> Only sizes confirmed in stock</label>
+    <span class="grow"></span>
+    <span class="count" id="shown"></span>
+  </section>
+
+  <section class="grid" id="grid" aria-live="polite"></section>
+
+  <section class="panel" aria-labelledby="shopsTitle">
+    <div class="panel-head"><h2 id="shopsTitle">Shops &amp; discount codes</h2><span class="count">Codes can expire. The shop's checkout has the final word.</span></div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Shop</th><th>Code</th><th>Offer &amp; conditions</th><th>On this page</th></tr></thead>
+      <tbody id="shopRows"><tr><td colspan="4" class="src">Loading shops…</td></tr></tbody>
+    </table></div>
+  </section>
+
+  <footer class="about">
+    <h2>How it works</h2>
+    <p>A scout checks sale pages of Dutch and European running shops every morning (Zalando, Decathlon, Boozt, Top4Running, All4running, Breuninger, SportsShoes, i-run, 21RUN) and the brands' own stores (Nike, adidas, HOKA, Puma, Mizuno, Brooks, Salomon) and refreshes this list. Deals stay up until the next scan, so a price or size can change in between: the shop's page has the final word.</p>
+    <p><strong>Size status.</strong> Green means the scout saw your size in stock. Amber means the shop's sale page didn't show stock per size, so pick your size at the shop. Deals confirmed out of your size are hidden.</p>
+    <p><strong>"Was" prices.</strong> RRP is the brand's advised price. Under the EU Omnibus rule many shops show a 30-day average or the lowest price of the last 30 days instead; each card says which one the discount is based on.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const CATS=[["road","Road shoes"],["race","Race / carbon"],["trail","Trail shoes"],["apparel","Clothing"],["accessory","Accessories"]];
+  const SHOE_CATS=new Set(["road","race","trail"]);
+  const GENDERS=[["m","Men's"],["w","Women's"],["b","Both"]];
+  const CLOTH=["XS","S","M","L","XL","XXL"];
+  const SHOES=[];for(let s=36;s<=48.5;s+=0.5)SHOES.push(String(s));
+  const WAS={rrp:"vs RRP",avg30:"vs 30-day average price",low30:"vs lowest price of last 30 days",prev:"vs shop's previous price"};
+
+  const KEY="negsplit.profile.v1";
+  const $=id=>document.getElementById(id);
+
+  let profile=load();
+  let deals=[];let country=new Set();let shops={};let shopList=[];
+  function hasOffer(s){return s.offer&&!/^(No code found|Not checked)/.test(s.offer);}
+  function copy(text,btn){
+    const done=()=>{btn.textContent="Copied";setTimeout(()=>btn.textContent="Copy",1500);};
+    try{navigator.clipboard.writeText(text).then(done,()=>{btn.textContent=text;});}catch(e){btn.textContent=text;}
+  }
+  function renderNotice(){
+    const miss=shopList.filter(s=>s.status==="manual").sort((a,b)=>a.name.localeCompare(b.name));
+    if(!miss.length){$("notice").hidden=true;return;}
+    $("notice").hidden=false;
+    $("noticeList").textContent="These "+miss.length+" sites couldn't be read automatically: "+miss.map(s=>s.name).join(", ")+".";
+    $("noticeWhy").replaceChildren(...miss.map(s=>{const li=document.createElement("li");const b=document.createElement("b");b.textContent=s.name;
+      const sp=document.createElement("span");sp.textContent=" – "+(s.reason||"Couldn't be read automatically");li.append(b,sp);return li;}));
+  }
+  function renderShops(){
+    const tb=$("shopRows");tb.replaceChildren();
+    const order=s=>(s.code?0:hasOffer(s)?1:2);
+    for(const s of shopList.slice().sort((x,y)=>order(x)-order(y)||x.name.localeCompare(y.name))){
+      const tr=document.createElement("tr");
+      const t1=document.createElement("td");let a;if(s.sale){a=document.createElement("a");a.href=s.sale;a.target="_blank";a.rel="noopener";}else a=document.createElement("span");a.textContent=s.name;t1.append(a," ",Object.assign(document.createElement("span"),{className:"src",textContent:s.country}));
+      const t2=document.createElement("td");t2.className="cc";
+      if(s.code){const b=document.createElement("b");b.textContent=s.code;const btn=document.createElement("button");btn.type="button";btn.className="copy";btn.textContent="Copy";btn.addEventListener("click",()=>copy(s.code,btn));t2.append(b," ",btn);}else t2.textContent="–";
+      const t3=document.createElement("td");t3.textContent=s.offer||"";
+      if(s.source){const sm=document.createElement("div");sm.className="src";sm.textContent="Source: "+s.source;t3.appendChild(sm);}
+      const t4=document.createElement("td");t4.textContent=s.status==="scanned"?"Deals listed here":s.sale?"Not readable, browse at shop":"Not found";t4.className="src";
+      tr.append(t1,t2,t3,t4);tb.appendChild(tr);
+    }
+  }
+
+  function load(){
+    try{const p=JSON.parse(localStorage.getItem(KEY)||"null");if(p&&p.gender)return p;}catch(e){}
+    return null;
+  }
+  function save(p){try{localStorage.setItem(KEY,JSON.stringify(p));}catch(e){}}
+  const draft=profile?JSON.parse(JSON.stringify(profile)):{gender:"b",cats:["road","race","trail","apparel","accessory"],shoes:[],cloth:[],brands:""};
+
+  function chip(text,pressed,onClick,cls){
+    const b=document.createElement("button");b.type="button";b.className="chip"+(cls?" "+cls:"");
+    b.textContent=text;b.setAttribute("aria-pressed",pressed?"true":"false");
+    b.addEventListener("click",onClick);return b;
+  }
+  function toggleIn(arr,v){const i=arr.indexOf(v);i<0?arr.push(v):arr.splice(i,1);}
+
+  function renderForm(){
+    const g=$("genderChips");g.replaceChildren(...GENDERS.map(([k,t])=>chip(t,draft.gender===k,()=>{draft.gender=k;renderForm();})));
+    $("catChips").replaceChildren(...CATS.map(([k,t])=>chip(t,draft.cats.includes(k),()=>{toggleIn(draft.cats,k);renderForm();})));
+    $("shoeChips").replaceChildren(...SHOES.map(s=>chip(s,draft.shoes.includes(s),()=>{toggleIn(draft.shoes,s);renderForm();})));
+    $("clothChips").replaceChildren(...CLOTH.map(s=>chip(s,draft.cloth.includes(s),()=>{toggleIn(draft.cloth,s);renderForm();})));
+    $("brandsInput").value=draft.brands||"";
+  }
+  $("brandsInput").addEventListener("input",e=>{draft.brands=e.target.value;});
+
+  function renderSummary(){
+    const s=$("sizeSummary");s.replaceChildren();
+    if(!profile){$("editSizes").hidden=true;$("sizeForm").hidden=false;return;}
+    const parts=[GENDERS.find(g=>g[0]===profile.gender)[1]];
+    if(profile.shoes.length)parts.push("EU "+profile.shoes.slice().sort((a,b)=>a-b).join(" / "));
+    if(profile.cloth.length)parts.push(profile.cloth.join(" / "));
+    parts.push(profile.cats.length+" categories");
+    parts.forEach(p=>{const c=document.createElement("span");c.className="chip static";c.textContent=p;s.appendChild(c);});
+    $("editSizes").hidden=false;$("sizeForm").hidden=true;
+  }
+  $("saveSizes").addEventListener("click",()=>{
+    if(!draft.cats.length)draft.cats=CATS.map(c=>c[0]);
+    profile=JSON.parse(JSON.stringify(draft));save(profile);renderSummary();renderDeals();
+    $("grid").scrollIntoView({behavior:"smooth",block:"start"});
+  });
+  $("editSizes").addEventListener("click",()=>{$("sizeForm").hidden=false;$("editSizes").hidden=true;});
+
+  ["sortSel","maxSel","confirmedOnly","brandSel"].forEach(id=>$(id).addEventListener("change",renderDeals));
+  let qTimer;$("q").addEventListener("input",()=>{clearTimeout(qTimer);qTimer=setTimeout(renderDeals,120);});
+  const norm=s=>(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9%]+/g," ").trim();
+  function matches(d,words){
+    if(!words.length)return true;
+    const hay=norm([d.brand,d.model,d.color,d.shop,(CATS.find(k=>k[0]===d.cat)||["",""])[1],d.cat==="race"?"carbon super shoe racing":""].join(" "));
+    const flat=hay.replace(/ /g,"");
+    return words.every(w=>hay.includes(w)||flat.includes(w.replace(/ /g,"")));
+  }
+  function renderBrands(){
+    const counts={};for(const d of deals)counts[d.brand]=(counts[d.brand]||0)+1;
+    const cur=$("brandSel").value;const sel=$("brandSel");sel.replaceChildren(new Option("All brands",""));
+    Object.keys(counts).sort((a,b)=>a.localeCompare(b,undefined,{sensitivity:"base"})).forEach(b=>sel.add(new Option(b+" ("+counts[b]+")",b)));
+    sel.value=cur;
+  }
+
+  function sizeStatus(d,p){
+    if(d.cat==="accessory")return{state:"neutral",text:"One size / see shop"};
+    const mine=SHOE_CATS.has(d.cat)?p.shoes:p.cloth;
+    const unit=SHOE_CATS.has(d.cat)?"EU ":"";
+    if(!mine.length)return{state:"neutral",text:d.sizes?d.sizes.length+" sizes in stock":"Sizes not checked"};
+    if(!Array.isArray(d.sizes))return{state:"warn",text:"Check "+unit+mine.join("/")+" at shop"};
+    const hit=mine.filter(s=>d.sizes.map(String).includes(s));
+    if(hit.length)return{state:"ok",text:unit+hit.join(" / ")+" in stock"};
+    return{state:"none"};
+  }
+
+  function renderDeals(){
+    const p=profile||draft;
+    const fav=(p.brands||"").split(",").map(s=>s.trim().toLowerCase()).filter(Boolean);
+    const max=+$("maxSel").value;const confirmed=$("confirmedOnly").checked;
+    const qv=norm($("q").value);const words=qv?qv.split(" "):[];const brand=$("brandSel").value;
+    const searching=words.length>0||!!brand;
+    let list=deals.map(d=>{
+      const off=Math.round((1-d.price/d.was)*100);
+      const st=sizeStatus(d,p);
+      const isFav=fav.some(f=>d.brand.toLowerCase().includes(f));
+      return{d,off,st,score:off+(st.state==="ok"?12:0)+(isFav?10:0)};
+    }).filter(x=>{
+      const d=x.d;
+      if(brand&&d.brand!==brand)return false;
+      if(!matches(d,words))return false;
+      if(!searching&&!p.cats.includes(d.cat))return false;
+      if(p.gender!=="b"&&d.gender!=="u"&&d.gender!==p.gender)return false;
+      if(x.st.state==="none")return false;
+      if(confirmed&&x.st.state!=="ok")return false;
+      if(max&&d.price>max)return false;
+      if(country.size&&!country.has(d.country))return false;
+      return x.off>0;
+    });
+    const sort=$("sortSel").value;
+    list.sort(sort==="price"?(a,b)=>a.d.price-b.d.price:sort==="off"?(a,b)=>b.off-a.off:(a,b)=>b.score-a.score);
+    $("shown").textContent=list.length+" of "+deals.length+" deals";
+    const term=($("q").value.trim()||brand);const ew=$("elsewhere");
+    if(term){
+      ew.hidden=false;ew.replaceChildren(document.createTextNode("Only discounted items appear here. Not seeing it? Check full prices for “"+term+"” at "));
+      const enc=encodeURIComponent(term);
+      [["Zalando","https://www.zalando.nl/catalogus/?q="+enc],["Google Shopping","https://www.google.com/search?tbm=shop&gl=nl&q="+enc]].forEach(([t,u],i)=>{
+        if(i)ew.appendChild(document.createTextNode(" or "));const a=document.createElement("a");a.href=u;a.target="_blank";a.rel="noopener";a.textContent=t;ew.appendChild(a);});
+      ew.appendChild(document.createTextNode("."));
+    }else ew.hidden=true;
+    const grid=$("grid");grid.replaceChildren();
+    if(!list.length){
+      const e=document.createElement("div");e.className="empty";e.style.gridColumn="1/-1";
+      e.textContent=searching?"No deals match “"+($("q").value.trim()||brand)+"” with your sizes and filters today. Check the spelling, clear “Only sizes confirmed”, or set gear for Both.":confirmed?"No deals with your size confirmed in stock right now. Untick “Only sizes confirmed” to see deals where you pick your size at the shop.":"Nothing matches these filters today. Try a higher max price or more categories.";
+      grid.appendChild(e);return;
+    }
+    const fmt=n=>"€"+n.toFixed(2).replace(".",",");
+    for(const x of list){
+      const d=x.d;const c=document.createElement("article");c.className="card";
+      const catName=(CATS.find(k=>k[0]===d.cat)||["",""])[1];
+      const g=d.gender==="m"?"Men":d.gender==="w"?"Women":"Unisex";
+      c.innerHTML=`<div class="meta"><span></span><span></span></div>
+        <div><p class="brand"></p><h3 class="model"></h3>${d.color?'<p class="color"></p>':""}</div>
+        <div></div>
+        <div class="price"><span class="now"></span><span class="was"></span><span class="off"></span><span class="basis"></span></div>
+        <div class="code" hidden></div>
+        <div class="foot"><span class="pill"></span><a class="go" target="_blank" rel="noopener"></a></div>`;
+      const m=c.querySelectorAll(".meta span");m[0].textContent=catName+" · "+g;m[1].textContent=d.shop+" · "+d.country;
+      c.querySelector(".brand").textContent=d.brand;c.querySelector(".model").textContent=d.model;
+      if(d.color)c.querySelector(".color").textContent=d.color;
+      c.querySelector(".now").textContent=(d.from?"from ":"")+fmt(d.price);c.querySelector(".was").textContent=fmt(d.was);
+      c.querySelector(".off").textContent="−"+x.off+"%";c.querySelector(".basis").textContent=WAS[d.wasType]||"";
+      const pill=c.querySelector(".pill");pill.classList.add(x.st.state);pill.textContent=x.st.text;
+      const sh=shops[d.shop];const cr=c.querySelector(".code");
+      if(sh&&(sh.code||hasOffer(sh))){
+        cr.hidden=false;
+        if(sh.code){const b=document.createElement("b");b.textContent=sh.code;const btn=document.createElement("button");btn.type="button";btn.className="copy";btn.textContent="Copy";
+          btn.addEventListener("click",()=>copy(sh.code,btn));const s=document.createElement("span");s.textContent=sh.offer||"";cr.append(b,btn,s);}
+        else cr.textContent=sh.offer;
+      }
+      const a=c.querySelector(".go");a.href=d.url;a.textContent="View at "+d.shop+" →";
+      grid.appendChild(c);
+    }
+  }
+
+  function renderCountries(){
+    const cs=[...new Set(deals.map(d=>d.country))].sort();
+    $("countryChips").replaceChildren(...cs.map(k=>chip("Shops "+k,country.has(k),()=>{country.has(k)?country.delete(k):country.add(k);renderCountries();renderDeals();})));
+  }
+
+  renderForm();renderSummary();
+  const timer=setTimeout(()=>{if(!deals.length)$("updated").textContent="Deals are taking long to load. Refresh the page to try again.";},10000);
+  fetch("deals.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(data=>{
+    clearTimeout(timer);
+    shopList=data.shops||[];shops=Object.fromEntries(shopList.map(s=>[s.name,s]));renderShops();renderNotice();
+    deals=(data.deals||[]).filter(d=>d&&d.price>0&&d.was>0&&d.url);
+    $("dealTotal").textContent=deals.length+" deals";
+    const t=new Date(data.updated);
+    $("updated").textContent=isNaN(t)?"":"Scanned "+t.toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"})+", "+t.toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
+    renderBrands();renderCountries();renderDeals();
+  }).catch(()=>{clearTimeout(timer);$("updated").textContent="Couldn't load deals. Refresh to try again.";});
+})();
+</script>
+	</body>
+</html>
