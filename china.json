@@ -39,6 +39,14 @@
      "cur": "GBP",
      "date": "2026-11",
      "note": "LI-NING official store"
+    },
+    {
+     "platform": "taobao",
+     "amount": 706.43,
+     "cur": "CNY",
+     "date": "2026-11-16",
+     "src": "https://m.oopbuy.com/pages/goods/details?id=0000BRr7cLG-bXcSFNjbbriN2MghFTHNslxXSsAjJXY1YHg&channel=TAOBAO",
+     "note": "live Taobao listing via agent Oopbuy (ARMW001); other listings up to ¥944.83; seller not shown"
     }
    ]
   },
@@ -152,6 +160,14 @@
      "cur": "CNY",
      "date": "2026-07-31",
      "src": "https://www.smzdm.com/sou/18610/"
+    },
+    {
+     "platform": "taobao",
+     "amount": 358.47,
+     "cur": "CNY",
+     "date": "2026-11-16",
+     "src": "https://m.oopbuy.com/pages/goods/details?id=0000kQk9V8sdxPReRsVmLcU0AP8jVQflUFUV1ESugNpWXOA&channel=TAOBAO",
+     "note": "live Taobao listing via agent Oopbuy (ARPW007)"
     }
    ]
   },
