@@ -1,0 +1,370 @@
+{
+ "updated": "2026-11-16",
+ "fx": {
+  "CNY": 7.44,
+  "USD": 1.115,
+  "GBP": 0.875,
+  "note": "EUR mid-market, mid-Nov 2026"
+ },
+ "unpriced": [
+  {
+   "brand": "Do-Win",
+   "model": "Zhengtu / PB series",
+   "cn": "多威 征途"
+  },
+  {
+   "brand": "Dynafish",
+   "model": "Xiaonian",
+   "cn": ""
+  }
+ ],
+ "models": [
+  {
+   "brand": "Li-Ning",
+   "model": "Feidian 6 Elite",
+   "cn": "李宁 飞电6 ELITE",
+   "cat": "race",
+   "prices": [
+    {
+     "platform": "vip",
+     "amount": 701.1,
+     "cur": "CNY",
+     "date": "2026-08",
+     "src": "https://www.smzdm.com/p/179290385/",
+     "note": "Vipshop, with voucher"
+    },
+    {
+     "platform": "aliexpress",
+     "amount": 126,
+     "cur": "GBP",
+     "date": "2026-11",
+     "note": "LI-NING official store"
+    }
+   ]
+  },
+  {
+   "brand": "Li-Ning",
+   "model": "Feidian 6 Ultra",
+   "cn": "李宁 飞电6 ULTRA",
+   "cat": "race",
+   "prices": [
+    {
+     "platform": "pdd",
+     "amount": 922.8,
+     "cur": "CNY",
+     "date": "2026-07-27",
+     "src": "https://www.smzdm.com/sou/18410/",
+     "note": "group-buy price"
+    }
+   ]
+  },
+  {
+   "brand": "Li-Ning",
+   "model": "Feidian 6 Challenger",
+   "cn": "李宁 飞电6 CHALLENGER",
+   "cat": "race",
+   "prices": [
+    {
+     "platform": "pdd",
+     "amount": 228,
+     "cur": "CNY",
+     "date": "2026-07-22",
+     "src": "https://www.smzdm.com/sou/6413/p47/",
+     "note": "women's"
+    },
+    {
+     "platform": "aliexpress",
+     "amount": 82,
+     "cur": "USD",
+     "date": "2026-11",
+     "note": "official store"
+    }
+   ]
+  },
+  {
+   "brand": "Li-Ning",
+   "model": "Red Hare 9 Pro",
+   "cn": "李宁 赤兔9 PRO",
+   "cat": "road",
+   "prices": [
+    {
+     "platform": "taobao",
+     "amount": 211.56,
+     "cur": "CNY",
+     "date": "2026-07-31",
+     "src": "https://www.smzdm.com/sou/18410/",
+     "note": "Tmall"
+    },
+    {
+     "platform": "pdd",
+     "amount": 216,
+     "cur": "CNY",
+     "date": "2026-07-31",
+     "src": "https://www.smzdm.com/sou/18610/"
+    },
+    {
+     "platform": "jd",
+     "amount": 220.15,
+     "cur": "CNY",
+     "date": "2026-08-05",
+     "src": "https://www.smzdm.com/sou/18076/"
+    },
+    {
+     "platform": "aliexpress",
+     "amount": 60,
+     "cur": "USD",
+     "date": "2026-11",
+     "note": "official store"
+    }
+   ]
+  },
+  {
+   "brand": "Li-Ning",
+   "model": "Red Hare 9",
+   "cn": "李宁 赤兔9",
+   "cat": "road",
+   "prices": [
+    {
+     "platform": "pdd",
+     "amount": 130.1,
+     "cur": "CNY",
+     "date": "2026-07-25",
+     "src": "https://www.smzdm.com/sou/18338/"
+    },
+    {
+     "platform": "aliexpress",
+     "amount": 37,
+     "cur": "USD",
+     "date": "2026-11",
+     "note": "official store"
+    }
+   ]
+  },
+  {
+   "brand": "Li-Ning",
+   "model": "Red Hare 9 Ultra",
+   "cn": "李宁 赤兔9 ULTRA",
+   "cat": "road",
+   "prices": [
+    {
+     "platform": "pdd",
+     "amount": 276,
+     "cur": "CNY",
+     "date": "2026-07-31",
+     "src": "https://www.smzdm.com/sou/18610/"
+    }
+   ]
+  },
+  {
+   "brand": "Li-Ning",
+   "model": "Jueying 3",
+   "cn": "李宁 绝影3",
+   "cat": "road",
+   "prices": [
+    {
+     "platform": "pdd",
+     "amount": 221.5,
+     "cur": "CNY",
+     "date": "2026-07-31",
+     "src": "https://www.smzdm.com/sou/18610/"
+    }
+   ]
+  },
+  {
+   "brand": "Xtep",
+   "model": "160X 5.0 Pro",
+   "cn": "特步 160X 5.0 PRO",
+   "cat": "race",
+   "prices": [
+    {
+     "platform": "pdd",
+     "amount": 360.8,
+     "cur": "CNY",
+     "date": "2026-07-25"
+    }
+   ]
+  },
+  {
+   "brand": "Xtep",
+   "model": "2000km 5",
+   "cn": "特步 两千公里5代",
+   "cat": "road",
+   "prices": [
+    {
+     "platform": "pdd",
+     "amount": 198,
+     "cur": "CNY",
+     "date": "2026-07-18",
+     "src": "https://www.smzdm.com/sou/6413/p149/",
+     "note": "women's; men's seen at ¥218.7"
+    }
+   ]
+  },
+  {
+   "brand": "Xtep",
+   "model": "Qingfeng 8",
+   "cn": "特步 氢风8",
+   "cat": "road",
+   "prices": [
+    {
+     "platform": "pdd",
+     "amount": 129,
+     "cur": "CNY",
+     "date": "2026-07"
+    }
+   ]
+  },
+  {
+   "brand": "Xtep",
+   "model": "Zhiqing 7 Pro",
+   "cn": "特步 致轻7 PRO",
+   "cat": "road",
+   "prices": [
+    {
+     "platform": "jd",
+     "amount": 189,
+     "cur": "CNY",
+     "date": "2026-07"
+    }
+   ]
+  },
+  {
+   "brand": "Anta",
+   "model": "C202 7",
+   "cn": "安踏 C202 7",
+   "cat": "race",
+   "prices": [
+    {
+     "platform": "pdd",
+     "amount": 311.9,
+     "cur": "CNY",
+     "date": "2026-07-28",
+     "src": "https://www.smzdm.com/sou/18606/"
+    }
+   ]
+  },
+  {
+   "brand": "Anta",
+   "model": "PG7",
+   "cn": "安踏 PG7",
+   "cat": "road",
+   "prices": [
+    {
+     "platform": "jd",
+     "amount": 219,
+     "cur": "CNY",
+     "date": "2026-07-29",
+     "src": "https://www.smzdm.com/sou/18606/"
+    }
+   ]
+  },
+  {
+   "brand": "361°",
+   "model": "Flame 5.0",
+   "cn": "361度 飞燃5.0",
+   "cat": "race",
+   "prices": [
+    {
+     "platform": "taobao",
+     "amount": 324.8,
+     "cur": "CNY",
+     "date": "2026-08-07",
+     "src": "https://www.smzdm.com/p/179975489/",
+     "note": "Tmall, with vouchers"
+    }
+   ]
+  },
+  {
+   "brand": "361°",
+   "model": "Flame 4x4",
+   "cn": "361度 飞燃4x4",
+   "cat": "trail",
+   "prices": [
+    {
+     "platform": "taobao",
+     "amount": 163.6,
+     "cur": "CNY",
+     "date": "2026-07-27",
+     "src": "https://www.smzdm.com/sou/18304/",
+     "note": "Tmall, with voucher"
+    }
+   ]
+  },
+  {
+   "brand": "Qiaodan",
+   "model": "Feiying PB 5.0",
+   "cn": "乔丹 飞影PB5.0",
+   "cat": "race",
+   "prices": [
+    {
+     "platform": "taobao",
+     "amount": 258,
+     "cur": "CNY",
+     "date": "2026-06-11",
+     "src": "https://www.smzdm.com/sou/18021/p51/",
+     "note": "Tmall, with voucher"
+    },
+    {
+     "platform": "jd",
+     "amount": 265.09,
+     "cur": "CNY",
+     "date": "2026-05-31",
+     "src": "https://www.smzdm.com/sou/18021/p68/"
+    }
+   ]
+  },
+  {
+   "brand": "Qiaodan",
+   "model": "Feiying PB 4.0 Pro",
+   "cn": "乔丹 飞影PB4.0 巭PRO",
+   "cat": "race",
+   "prices": [
+    {
+     "platform": "taobao",
+     "amount": 299,
+     "cur": "CNY",
+     "date": "2026-06-04",
+     "src": "https://www.smzdm.com/sou/18021/p55/",
+     "note": "Tmall"
+    },
+    {
+     "platform": "jd",
+     "amount": 299.99,
+     "cur": "CNY",
+     "date": "2026-06-10",
+     "src": "https://www.smzdm.com/sou/18021/p44/"
+    }
+   ]
+  },
+  {
+   "brand": "Qiaodan",
+   "model": "Qiangfeng 4",
+   "cn": "乔丹 强风4",
+   "cat": "road",
+   "prices": [
+    {
+     "platform": "jd",
+     "amount": 279.99,
+     "cur": "CNY",
+     "date": "2026-06-18",
+     "src": "https://www.smzdm.com/sou/18021/p27/"
+    }
+   ]
+  },
+  {
+   "brand": "Peak",
+   "model": "Taiji 5.0",
+   "cn": "匹克 态极5.0",
+   "cat": "road",
+   "prices": [
+    {
+     "platform": "pdd",
+     "amount": 138,
+     "cur": "CNY",
+     "date": "2026-07-21",
+     "src": "https://www.smzdm.com/sou/18032/"
+    }
+   ]
+  }
+ ]
+}
